@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
+using System.Linq;
 
 namespace OpeningWeekend
 {
@@ -20,17 +18,52 @@ namespace OpeningWeekend
             public int latogato;
 
 
-            public sor()
+            public adat(string sor)
             {
-
+                string[] d = sor.Split(';');
+                string eredetiCim = d[0];
+                string magyarCim = d[1];
+                string bemutato = d[2];
+                string forgalmazo = d[3];
+                int bevetel = int.Parse(d[4]);
+                int latogato = int.Parse(d[5]);
             }
         }
         static void Main(string[] args)
         {
 
+
+
+            List<adat> adatok = new List<adat>();
+            foreach (var sor in File.ReadAllLines("nyitohetvege.txt").Skip(1))
+
+            {
+                adatok.Add(new adat(sor));
+            }
+
+
+            
+
+            
+            foreach (var adat in adatok)
+            {
+                if (adat.eredetiCim == "Allied")
+                {
+
+                    Console.WriteLine("teszt");
+                    
+                }
+            }
+
+          Console.WriteLine($"Az állományban lévő filmek száma : {adatok.Count}");
             Console.ReadKey();
-            //eredetiCim;magyarCim;bemutato;forgalmazo;bevel;latogato
-          //  Allied; Szövetségesek; 2016.12.01; UIP; 44341076; 30804
+
         }
+
+
+
+
+
     }
 }
+
